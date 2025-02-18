@@ -59,7 +59,7 @@ Spatial Attention: Use a Convolutional Neural Network to map the input features 
 
 Author
 Shengjie LEI , Zhiyong WEI , Yulian ZHANG , Meihua FANG , Baowen WU
-
+Subject: "Enhanced Vehicle Detection in SAR Images via Global and Dual Attention Mechanisms"
 The Visual Computer
 
 
