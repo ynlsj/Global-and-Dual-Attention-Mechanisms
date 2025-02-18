@@ -1,21 +1,19 @@
-## yolov5改进
-### 模块1
-参考[$A^2-Nets$]((https://arxiv.org/pdf/1810.11579.pdf))，可以看做SE的进化版本
+## Improvements to YOLOv5
+### Module 1
+Refer to [$A^2-Nets$]((https://arxiv.org/pdf/1810.11579.pdf))，which can be regarded as an evolved version of SE.
 #### Double Attention Method
 ![Double Attention](image.png)
 
-### 模块2
-对yolov5的SPPF进行改进，在保证相同发感受野的情况下，进一步提升了模型的速度
+### Module 2
+The SPPF of YOLOv5 has been improved. While maintaining the same receptive field, the speed of the model is further enhanced.
 
 #### SPPF
 ![SPPF](image-2.png)
 #### SPPFCSPC
 ![SPPFCSPC](image-1.png)
 
-### 模块3
-参考[github上别人对yolo的改进](https://github.com/sggq/improved-yolov5/blob/6a0e60a771907a0994af019c9283dfee2cac31d0/models/yolo.py#L42)在预测头的不同层级的特征图上添加空间通道注意力**GAM_Attention**，该注意力方法可以一定程度上解决遮挡和交叉重叠等问题
-
-'''
+###Module 3
+Refer to [the improvements to YOLO by others on GitHub,](https://github.com/sggq/improved-yolov5/blob/6a0e60a771907a0994af019c9283dfee2cac31d0/models/yolo.py#L42)"GAM_Attention" to the feature maps at different levels of the prediction head. This attention method can, to some extent, solve problems such as occlusion and cross - overlap'''
 
     class GAM_Attention(nn.Module):  
         def __init__(self, in_channels, out_channels, rate=4):  
@@ -50,12 +48,18 @@
 
 '''
 
-对上述实现的简要概述：
-通道注意力：
-  通过mlp学习一组权重与原始的输入进行加权
+Brief Overview of the Above Implementation:
+Channel Attention: Learn a set of weights through a Multi - Layer Perceptron (MLP) and perform a weighted calculation with the original input.
+Spatial Attention: Use a Convolutional Neural Network to map the input features weighted by the channels. Map the result to the range of 0 - 1 through the sigmoid activation function, and then perform a weighted calculation with the original input, enabling the model to focus more on the regions of interest.
 
-空间注意力：
-通过卷积神经网络映射被通道加权的输入特征，并通过sigmiod激活到0-1，然后与原始的输入加权，从而使模型更加focal感兴趣的区域
+### Overall Improvements
+![Explanation of Improvement Locations](图片1.png)
 
-### 整体改进
-![改进位置说明](图片1.png)
+
+
+Author
+Shengjie LEI , Zhiyong WEI , Yulian ZHANG , Meihua FANG , Baowen WU
+
+The Visual Computer
+
+
